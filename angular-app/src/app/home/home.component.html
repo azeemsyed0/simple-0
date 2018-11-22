@@ -1,0 +1,16 @@
+<div class="container" id="main">
+  <div class="jumbotron wrapper">
+    <div>
+      <h1>
+        Welcome to {{ title }}
+      </h1>
+    </div>
+    <a class="btn" [routerLink]="['/login']">Sign up</a><br><br>
+    <form [formGroup] ="signupForm" ngSubmit="onSubmit()">
+      
+      <button type="submit">submit</button>
+    </form>
+    <a class="btn" [routerLink]="['/login']">Sign in</a><br><br>
+    <a class="btn" [routerLink]="['/login']">Sign in with Google</a>
+  </div>
+</div>
