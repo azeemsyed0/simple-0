@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { HomeComponent } from './home.component';
 import { homeRouting } from './home.routing';
+import { SharedModule } from 'src/shared/shared.module';
 
 
 @NgModule({
@@ -8,7 +9,8 @@ import { homeRouting } from './home.routing';
     HomeComponent
   ],
   imports: [
-    homeRouting
+    homeRouting,
+    SharedModule
   ],
   exports: [
     HomeComponent

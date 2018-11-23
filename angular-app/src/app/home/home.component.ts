@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
@@ -18,8 +18,14 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.signupForm = this.fb.group({
-
+      name: new FormControl(),
+      email: new FormControl(),
+      password: new FormControl
     })
+    console.log('bunnies!');
   }
 
+  signup() {
+    console.log("sign up data: ",this.signupForm.value);
+  }
 }
