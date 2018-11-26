@@ -4,13 +4,17 @@
   "description": "simple management app",
   "main": "index.js",
   "dependencies": {
-    "babel-cli": "^6.26.0",
-    "sequelize": "^4.41.2"
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "path": "^0.12.7",
+    "pg": "^7.6.1",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^4.41.2",
+    "sequelize-cli": "^5.3.0"
   },
   "devDependencies": {},
   "scripts": {
-    "start": "babel-node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon index.js"
   },
   "keywords": [
     "node",
