@@ -1,24 +1,20 @@
 import { NgModule } from '@angular/core';
-import { HomeComponent } from './home.component';
-import { homeRouting } from './home.routing';
+import { UserRoutingModule } from './user-routing.module';
+import { UserComponent } from './user.component';
 import { SharedModule } from 'src/shared/shared.module';
 import { MaterialModule } from 'src/shared/material.module';
 
-
 @NgModule({
-  declarations: [
-    HomeComponent
-  ],
   imports: [
-    homeRouting,
+    UserRoutingModule,
     SharedModule,
     MaterialModule
   ],
-  exports: [
-    HomeComponent
+  declarations: [
+    UserComponent
   ],
   entryComponents: [
-    HomeComponent
+    UserComponent
   ]
 })
-export class HomeModule {}
+export class UserModule { }

@@ -10,7 +10,7 @@ import { User } from 'src/models/users';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  title = 'S0';
+  title = 'SimpleZero';
   signupForm: FormGroup;
 
   constructor(
@@ -24,26 +24,22 @@ export class HomeComponent implements OnInit {
       name: new FormControl(),
       email: new FormControl(),
       password: new FormControl
-    })
-    console.log('bunnies!');
+    });
   }
 
-  addUser(name:string, email:string, password:string) {    
-      name = name.trim();
-      if (!name && !email && !password) { return; }
-      this.loginService.addEmployee({name:name,email:email,password:password} as User)
+  addUser(data) {
+      console.log("This is data ->  ",data);
+      if (!data.name && !data.email && !data.password) { return; }
+      this.loginService.addEmployee({name:data.name, email:data.email, password:data.password} as User)
         .subscribe( data => {
-          console.log(data, () => console.log('successfully added', data));
+          console.log('successfully added', data);
         });        
       ;
   }
 
   signup() {
     const data = this.signupForm.value;
-    const name = data.user;
-    const email = data.email;
-    const password = data.password;
     
-    this.addUser(name, email, password);
+    this.addUser(data);
   }
 }

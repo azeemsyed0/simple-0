@@ -5,7 +5,7 @@ const sequelize = new Sequelize('simple-0-dev-db','postgres', 'password', {
   operatorsAliases: false 
 });
 sequelize.sync({
-	force: true
+	// force: true
 })
  .then(() => console.log("tables created"),(err) => console.log(err));
 

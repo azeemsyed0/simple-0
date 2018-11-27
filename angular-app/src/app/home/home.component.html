@@ -1,20 +1,35 @@
-<div class="container" id="main">
-  <div class="jumbotron wrapper">
-    <div>
-      <h1>
-        Welcome to {{ title }}
-      </h1>
-    </div>    
-    <form [formGroup]="signupForm" (ngSubmit)="signup()">
-      <label>Name:</label>
-      <input type="text" formControlName="name" class="form-control">
-      <label>Email:</label>
-      <input type="text" formControlName="email" class="form-control">
-      <label>Password:</label>
-      <input type="text" formControlName="password" class="form-control"><br>
-      <button type="submit" class="float-center btn btn-success">Sign Up!</button>
-    </form><br>
-    <label>Already have an account? </label><a class="btn" [routerLink]="['/login']">Sign In</a><br>
-    <a class="btn" [routerLink]="['/login']">Sign in with Google</a>
-  </div>
+<div class="container">  
+  <mat-card class="example-card wrapper">
+    <mat-card-title>
+      Welcome to {{ title }}
+    </mat-card-title>
+    <mat-divider></mat-divider><br>
+    <mat-card-content>
+      <form [formGroup]="signupForm" (ngSubmit)="signup()">    
+        <mat-form-field class="example-form-field">
+          <input matInput type="text" placeholder="Name" formControlName="name">
+          <button mat-button *ngIf="signupForm.value.name" matSuffix mat-icon-button aria-label="Clear" (click)="signupForm.get('name').setValue('')">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field><br>
+        <mat-form-field class="example-form-field">
+          <input matInput type="text" placeholder="Email" formControlName="email">
+          <button mat-button *ngIf="signupForm.value.email" matSuffix mat-icon-button aria-label="Clear" (click)="signupForm.get('email').setValue('')">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field><br>
+        <mat-form-field class="example-form-field">
+          <input matInput type="text" placeholder="Password" formControlName="password">
+          <button mat-button *ngIf="signupForm.value.password" matSuffix mat-icon-button aria-label="Clear" (click)="signupForm.get('password').setValue('')">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field><br>
+        <button mat-raised-button type="submit" class="float-center btn btn-success">Sign Up!</button>
+      </form><br>
+    </mat-card-content>
+    <mat-card-actions>
+      <label>Already have an account? </label><a class="btn" [routerLink]="['/login']">Sign In</a><br>
+      <a class="btn" [routerLink]="['/login']">Sign in with Google</a>
+    </mat-card-actions>
+  </mat-card>  
 </div>
