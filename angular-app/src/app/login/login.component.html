@@ -8,7 +8,7 @@
       <form [formGroup]="signinForm" (ngSubmit)="signin()">
         <mat-form-field class="form-field">
           <input matInput type="text" placeholder="Email" formControlName="email">
-          <mat-error *ngIf="email.invalid && submitted">
+          <mat-error *ngIf="email.invalid && submitted || (email.invalid && !submitted && ( email.dirty || email.touched ))">
             Email is <strong>required</strong>
           </mat-error>
           <mat-error *ngIf="(email.dirty || email.touched) && email.invalid && !email.errors.required">
@@ -20,7 +20,7 @@
         </mat-form-field><br>
         <mat-form-field class="form-field">
           <input matInput type="text" placeholder="Password" formControlName="password">
-          <mat-error *ngIf="password.invalid && submitted">
+          <mat-error *ngIf="password.invalid && submitted || (password.invalid && !submitted && ( password.dirty || password.touched ))">
             Password is <strong>required</strong>
           </mat-error>
           <mat-error *ngIf="(password.dirty || password.touched) && password.invalid && !password.errors.required">
