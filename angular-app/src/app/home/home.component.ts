@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { LoginService } from '../login/login.service';
 import { User } from 'src/models/users';
 
@@ -12,6 +12,7 @@ import { User } from 'src/models/users';
 export class HomeComponent implements OnInit {
   title = 'SimpleZero';
   signupForm: FormGroup;
+  submitted: boolean = false;
 
   constructor(
     public router: Router,
@@ -21,9 +22,9 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.signupForm = this.fb.group({
-      name: new FormControl(),
-      email: new FormControl(),
-      password: new FormControl
+      name: new FormControl('',[ Validators.required ]),
+      email: new FormControl('',[ Validators.required, Validators.email ]),
+      password: new FormControl('',[ Validators.required ])
     });
   }
 
@@ -38,8 +39,24 @@ export class HomeComponent implements OnInit {
   }
 
   signup() {
-    const data = this.signupForm.value;
-    
-    this.addUser(data);
+    this.submitted = true;
+
+    if(this.signupForm.valid) {
+      const data = this.signupForm.value;
+      console.log(this.email.errors);
+      this.addUser(data);
+    }
+  }
+
+  get password() {
+    return this.signupForm.get('password');
+  }
+  
+  get email() {
+    return this.signupForm.get('email');
+  }
+
+  get name() {
+    return this.signupForm.get('name');
   }
 }

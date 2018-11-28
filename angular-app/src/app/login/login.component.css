@@ -3,6 +3,10 @@
   margin: 10px auto;
 }
 
+.card {
+  max-width: 400px;
+}
+
 .container {
   height: 80vh;
   display: flex;
@@ -15,10 +19,14 @@
   top: 50%;
 }
 
-.example-form-field {
+.form-field {
   width: 200px;
 }
 
-.example-card {
-  max-width: 400px;
+mat-form-field {
+  padding-bottom: 20px;
+}
+
+button {
+  margin-top: 10px;
 }
