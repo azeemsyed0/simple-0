@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
-import { range } from 'rxjs';
+import { LoginService } from '../login/login.service';
 
 @Component({
   selector: 'app-user',
@@ -9,14 +9,22 @@ import { range } from 'rxjs';
 })
 export class UserComponent implements OnInit {
   numbers = [];
-  user: string;
+
+  constructor(
+    changeDetectorRef: ChangeDetectorRef, 
+    media: MediaMatcher,
+    public loginService: LoginService
+  ) {
+    this.mobileQuery = media.matchMedia('(max-width: 600px)');
+    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
+    this.mobileQuery.addListener(this._mobileQueryListener);
+  }
 
   ngOnInit() {
     let i = 0;
     for(;i<20;i++) {
       this.numbers.push(`Example text number: ${i}`);
     }
-    this.user = `Stranger!`;
   }
   mobileQuery: MediaQueryList;
 
@@ -30,13 +38,7 @@ export class UserComponent implements OnInit {
        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`);
 
   private _mobileQueryListener: () => void;
-
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
-    this.mobileQuery = media.matchMedia('(max-width: 600px)');
-    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
-    this.mobileQuery.addListener(this._mobileQueryListener);
-  }
-
+  
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }

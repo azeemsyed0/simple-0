@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { LoginService } from '../login/login.service';
-import { User } from 'src/models/users';
 
 @Component({
   selector: 'app-home',
@@ -20,7 +19,7 @@ export class HomeComponent implements OnInit {
     public fb: FormBuilder
   ) { }
 
-  ngOnInit() {
+  ngOnInit() {    
     this.signupForm = this.fb.group({
       name: new FormControl('',[ Validators.required ]),
       email: new FormControl('',[ Validators.required, Validators.email ]),
@@ -29,22 +28,24 @@ export class HomeComponent implements OnInit {
   }
 
   addUser(data) {
-      console.log("This is data ->  ",data);
-      if (!data.name && !data.email && !data.password) { return; }
-      this.loginService.addEmployee({name:data.name, email:data.email, password:data.password} as User)
-        .subscribe( data => {
-          console.log('successfully added', data);
-        });        
-      ;
+    this.loginService.addEmployee({name:data.name, email:data.email, password:data.password})
+      .subscribe( data => {
+        console.log('successfully added', data);
+      });        
+    ;
   }
 
-  signup() {
-    this.submitted = true;
+  async signup() {
+    this.submitted = true;    
 
     if(this.signupForm.valid) {
       const data = this.signupForm.value;
-      console.log(this.email.errors);
-      this.addUser(data);
+      
+      await this.addUser(data);
+      
+      this.loginService.userSignup = true;
+      this.loginService.registeredUser = data.name;
+      this.router.navigate(['login']);
     }
   }
 

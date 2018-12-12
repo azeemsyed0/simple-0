@@ -4,7 +4,6 @@ const sequelize = require('../sequelize');
 const Credential = sequelize.define('Credential', {
   
   id: {
-
     type: Sequelize.INTEGER, 
     primaryKey: true, 
     autoIncrement: true 
@@ -12,26 +11,21 @@ const Credential = sequelize.define('Credential', {
 
   name:{
     type: Sequelize.STRING,
-    allowNull: false,
-    unique:true
+    allowNull: true,
+    unique:false
   },
 
   email:{
     type: Sequelize.STRING,
-    allowNull: false,
-    unique:true
+    allowNull: true,
+    unique:false
   },
   
   password:{
     type: Sequelize.STRING,
-    allowNull: false,
-    unique:true
-  },
-
-},
-  { 
-    timestamps: false
+    allowNull: true,
+    unique:false
   }
-);
+});
 
 module.exports = Credential;

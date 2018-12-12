@@ -27,14 +27,18 @@ exports.createUser = (req,res) => {
     });
 }
   
-  exports.getUserById = (req,res) => {
-    Credential.findById(req.params.id)
-     .then(user => {
+exports.getUserByEmail = (req,res) => {
+  console.log("This is email..", req.params.email);
+  Credential.findAll({
+    where: {
+      email:req.params.email
+    }})
+    .then(user => {
         if(!user.length)
           return res.status(400).send("User with given ID doesn't exist!");
         res.send(user);
-     })
-     .catch((err) =>{
+    })
+    .catch((err) =>{
         res.status(400).send("User with given ID doesn't exist!");
-     });
-  }
+    });
+}

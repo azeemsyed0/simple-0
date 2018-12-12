@@ -1,9 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { UserResponse } from '../../models/user.response';
 import { ApiList } from '../../shared/api_list';
-import { User } from '../../models/users';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -12,16 +9,28 @@ const httpOptions = {
 @Injectable({ providedIn: 'root' })
 export class LoginService {
   usersUrl = ApiList.usersUrl;
-
+  userSignup: boolean = false;
+  registeredUser: any;
+  loggedinUser: any;
+  
   constructor(
     private http: HttpClient
   ) { }
 
-  getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(`${this.usersUrl}`);
+  getUsers() {
+    return this.http.get(`${this.usersUrl}`);
   }
 
-  addEmployee(user: User): Observable<User> {
-    return this.http.post<User>(this.usersUrl, user, httpOptions);
+  getUserByEmail(email) {
+    const getUser = (email) => new Promise((resolve) => {
+      this.http.get(`${this.usersUrl}/${email}`).subscribe((result) => {
+        resolve(result);
+      });
+    });
+    return getUser(email);
+  }
+
+  addEmployee(user) {
+    return this.http.post(this.usersUrl, user, httpOptions);
   }
 }

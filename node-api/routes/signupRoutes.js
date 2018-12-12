@@ -5,7 +5,7 @@ const userRoutes = () => {
   const userRoutes = express.Router();
   userRoutes.get('/api/users', UserController.usersList);
   userRoutes.post('/api/users', UserController.createUser);
-  userRoutes.get('/api/user/:id', UserController.getUserById);
+  userRoutes.get('/api/users/:email', UserController.getUserByEmail);
   return userRoutes;
 }
 

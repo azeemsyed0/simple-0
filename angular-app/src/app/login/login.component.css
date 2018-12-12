@@ -30,3 +30,7 @@ mat-form-field {
 button {
   margin-top: 20px;
 }
+
+button:disabled {
+  cursor: not-allowed;
+}
